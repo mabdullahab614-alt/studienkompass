@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studienkompass — German Public University Eligibility Checker</title>
+<meta name="description" content="Find out if you're eligible for a Bachelor's program at a German public university. Built for Pakistani students.">
+<link rel="canonical" href="https://mabdullahab614-alt.github.io/studienkompass/">
+<meta name="theme-color" content="#0A0A0C">
+<meta name="robots" content="index, follow">
+
+<!-- favicon: inline SVG brand mark (flag stripes), no external file needed -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='9' rx='1.5' fill='%230B0B0D'/%3E%3Crect y='9.5' width='28' height='9' rx='1.5' fill='%23C9202D'/%3E%3Crect y='19' width='28' height='9' rx='1.5' fill='%23D4A72C'/%3E%3C/svg%3E">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Studienkompass">
+<meta property="og:title" content="Studienkompass — German Public University Eligibility Checker">
+<meta property="og:description" content="Score your academic profile against 130+ German public universities and see exactly where you stand — free, in-browser, built for Pakistani students.">
+<meta property="og:url" content="https://mabdullahab614-alt.github.io/studienkompass/">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Studienkompass — German Public University Eligibility Checker">
+<meta name="twitter:description" content="Score your academic profile against 130+ German public universities and see exactly where you stand — free, in-browser.">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Studienkompass",
+  "applicationCategory": "EducationApplication",
+  "operatingSystem": "Any (runs in browser)",
+  "description": "A free, browser-only eligibility checker that helps Pakistani students estimate their admission chances at German public universities.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "audience": { "@type": "EducationalAudience", "educationalRole": "student" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="9" rx="1.5" fill="#0B0B0D"/>
+          <rect y="9.5" width="28" height="9" rx="1.5" fill="#C9202D"/>
+          <rect y="19" width="28" height="9" rx="1.5" fill="#D4A72C"/>
+        </svg>
+      </span>
+      <span class="brand-name">Studien<em>kompass</em></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#checker">Eligibility Checker</a>
+      <a href="#scholarships">Scholarships</a>
+      <a href="#visa">Visa</a>
+      <a href="#costs">Cost Calculator</a>
+      <a href="#documents">Documents</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light mode">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+      </button>
+      <a href="#checker" class="btn btn-primary btn-sm">Check Eligibility</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <span class="float-shape shape-1"></span>
+    <span class="float-shape shape-2"></span>
+    <span class="float-shape shape-3"></span>
+    <span class="float-shape shape-4"></span>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow" data-reveal>Built for Pakistani students · Public universities · English-taught BS programs</p>
+      <h1 data-reveal>Find your dream <span class="grad-text">German public university</span> in seconds</h1>
+      <p class="hero-sub" data-reveal>Enter your academic record once. Studienkompass scores it against modeled admission patterns across Germany's public university system and tells you exactly where you stand — eligible, conditional, or what to fix first.</p>
+      <div class="hero-cta" data-reveal>
+        <a href="#checker" class="btn btn-primary btn-lg">Start Eligibility Check <span class="arrow">→</span></a>
+        <a href="#features" class="btn btn-ghost btn-lg">See how it works</a>
+      </div>
+      <div class="hero-stats" data-reveal>
+        <div class="stat"><span class="stat-num" data-count="132">0</span><span class="stat-label">Public Universities</span></div>
+        <div class="stat"><span class="stat-num" data-count="640">0</span><span class="stat-label">Programs Indexed</span></div>
+        <div class="stat"><span class="stat-num" data-count="100">0</span><span class="stat-suffix">%</span><span class="stat-label">English-taught BS</span></div>
+        <div class="stat"><span class="stat-num-static">Free</span><span class="stat-label">Smart Eligibility Score</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" data-reveal>
+      <div class="hero-illustration" aria-hidden="true">
+        <svg viewBox="0 0 600 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- journey path: Pakistan -> Germany -->
+          <path id="routePath" class="route-path" d="M70,430 C160,380 190,300 210,250 C240,175 300,150 420,95" stroke-width="2.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+
+          <!-- origin marker: Pakistan -->
+          <g class="marker marker-origin" transform="translate(70,430)">
+            <circle r="20" class="marker-halo"/>
+            <circle r="7" class="marker-dot marker-dot-green"/>
+            <text x="0" y="34" text-anchor="middle" class="marker-label">PK</text>
+          </g>
+
+          <!-- destination marker: Germany -->
+          <g class="marker marker-dest" transform="translate(420,95)">
+            <circle r="24" class="marker-halo"/>
+            <circle r="8" class="marker-dot marker-dot-red"/>
+            <text x="0" y="-32" text-anchor="middle" class="marker-label">DE</text>
+          </g>
+
+          <!-- plane travelling the route -->
+          <g class="plane" transform="translate(210,250)">
+            <path d="M0,-8 L2.5,-1 L10,1 L10,4 L2.5,3 L0.5,9 L3.5,10.5 L3.5,12.5 L0,11.5 L-3.5,12.5 L-3.5,10.5 L-0.5,9 L-2.5,3 L-10,4 L-10,1 L-2.5,-1 Z"/>
+          </g>
+
+          <!-- compass rose, top right -->
+          <g class="compass" transform="translate(500,150)">
+            <circle r="46" class="compass-ring"/>
+            <circle r="46" class="compass-ring compass-ring-dash"/>
+            <line x1="0" y1="-46" x2="0" y2="-38" class="compass-tick"/>
+            <line x1="0" y1="46" x2="0" y2="38" class="compass-tick"/>
+            <line x1="-46" y1="0" x2="-38" y2="0" class="compass-tick"/>
+            <line x1="46" y1="0" x2="38" y2="0" class="compass-tick"/>
+            <path d="M0,-30 L8,0 L0,30 L-8,0 Z" class="compass-needle-a"/>
+            <path d="M0,-30 L8,0 L0,4 Z" class="compass-needle-b"/>
+            <circle r="4" class="compass-hub"/>
+          </g>
+
+          <!-- graduation cap near destination -->
+          <g class="gradcap" transform="translate(460,230)">
+            <path d="M-26,0 L0,-11 L26,0 L0,11 Z" class="gradcap-top"/>
+            <path d="M-13,5.5 L-13,17 C-13,22 13,22 13,17 L13,5.5" class="gradcap-band"/>
+            <line x1="22" y1="-2" x2="22" y2="16" class="gradcap-tassel"/>
+            <circle cx="22" cy="18" r="2.2" class="gradcap-tassel-end"/>
+          </g>
+
+          <!-- scattered constellation dots -->
+          <circle cx="130" cy="200" r="2.4" class="scatter-dot dot-gold"/>
+          <circle cx="330" cy="330" r="2" class="scatter-dot dot-blue"/>
+          <circle cx="270" cy="120" r="2.6" class="scatter-dot dot-red"/>
+          <circle cx="500" cy="330" r="2" class="scatter-dot dot-green"/>
+          <circle cx="90" cy="300" r="1.8" class="scatter-dot dot-blue"/>
+          <circle cx="380" cy="60" r="2.2" class="scatter-dot dot-gold"/>
+        </svg>
+      </div>
+      <div class="score-card glass floaty">
+        <div class="score-card-head">
+          <div class="score-ring" id="heroRing">
+            <svg viewBox="0 0 120 120">
+              <circle class="ring-track" cx="60" cy="60" r="52"/>
+              <circle class="ring-fill" id="heroRingFill" cx="60" cy="60" r="52"/>
+            </svg>
+            <span class="ring-value" id="heroRingValue">0%</span>
+          </div>
+          <div>
+            <p class="score-title">Admission Chance</p>
+            <p class="score-uni">RWTH Aachen — B.Sc. Computer Science</p>
+          </div>
+        </div>
+        <ul class="score-checks">
+          <li class="ok">FSC Percentage — 86%</li>
+          <li class="ok">IELTS 7.0 — meets requirement</li>
+          <li class="warn">TestAS — recommended, not taken</li>
+        </ul>
+        <span class="badge badge-green">Eligible</span>
+      </div>
+      <div class="mini-card mini-card-1 glass floaty float-delay-1">
+        <span class="mini-badge badge-yellow">Conditional</span>
+        <p>TU Munich · Mechatronics</p>
+      </div>
+      <div class="mini-card mini-card-2 glass floaty float-delay-2">
+        <span class="mini-badge badge-green">Eligible</span>
+        <p>Uni Stuttgart · Data Science</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOGOS / TRUST STRIP ============ -->
+<section class="trust-strip" aria-label="Coverage">
+  <p><strong>APS / uni-assist aware</strong> · Winter &amp; Summer intakes · Public tuition-free universities only · Data pattern last reviewed for the 2026 cycle</p>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="features" id="features">
+  <div class="section-head reveal-up">
+    <p class="eyebrow">What's inside</p>
+    <h2>One dashboard, the entire admissions puzzle</h2>
+    <p class="section-sub">Everything a Pakistani applicant needs to plan a German public-university application, in one place.</p>
+  </div>
+  <div class="feature-grid" id="featureGrid">
+    <!-- injected by script.js -->
+  </div>
+</section>
+
+<!-- ============ CHECKER (MULTI-STEP FORM) ============ -->
+<section class="checker" id="checker">
+  <div class="section-head reveal-up">
+    <p class="eyebrow">Eligibility Checker</p>
+    <h2>Tell us about your academic record</h2>
+    <p class="section-sub">Four short steps. Nothing is stored or sent anywhere — every calculation runs in your browser.</p>
+  </div>
+
+  <div class="form-shell glass">
+    <div class="form-progress" id="formProgress">
+      <div class="fp-step active" data-step="1"><span class="fp-dot">1</span><span class="fp-label">Personal</span></div>
+      <div class="fp-line"></div>
+      <div class="fp-step" data-step="2"><span class="fp-dot">2</span><span class="fp-label">Academic</span></div>
+      <div class="fp-line"></div>
+      <div class="fp-step" data-step="3"><span class="fp-dot">3</span><span class="fp-label">Language &amp; Tests</span></div>
+      <div class="fp-line"></div>
+      <div class="fp-step" data-step="4"><span class="fp-dot">4</span><span class="fp-label">Preferences</span></div>
+    </div>
+
+    <form id="eligibilityForm" novalidate>
+
+      <!-- STEP 1 -->
+      <fieldset class="form-step active" data-step="1">
+        <legend>Personal information</legend>
+        <div class="field-grid">
+          <div class="field">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Ahmed Raza" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+92 3XX XXXXXXX" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="country">Country of residence</label>
+            <input type="text" id="country" name="country" value="Pakistan" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="passportCountry">Passport country</label>
+            <input type="text" id="passportCountry" name="passportCountry" value="Pakistan" required>
+            <span class="field-error"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- STEP 2 -->
+      <fieldset class="form-step" data-step="2">
+        <legend>Academic record</legend>
+        <div class="field-grid">
+          <div class="field">
+            <label for="matricMarks">Matric — obtained marks</label>
+            <input type="number" id="matricMarks" name="matricMarks" min="0" placeholder="e.g. 950" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="matricTotal">Matric — total marks</label>
+            <input type="number" id="matricTotal" name="matricTotal" min="1" placeholder="e.g. 1100" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field readonly-field">
+            <label for="matricPct">Matric percentage</label>
+            <input type="text" id="matricPct" name="matricPct" readonly placeholder="Auto-calculated">
+          </div>
+          <div class="field">
+            <label for="fscMarks">FSC / Intermediate — obtained marks</label>
+            <input type="number" id="fscMarks" name="fscMarks" min="0" placeholder="e.g. 940" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="fscTotal">FSC / Intermediate — total marks</label>
+            <input type="number" id="fscTotal" name="fscTotal" min="1" placeholder="e.g. 1100" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field readonly-field">
+            <label for="fscPct">FSC percentage</label>
+            <input type="text" id="fscPct" name="fscPct" readonly placeholder="Auto-calculated">
+          </div>
+          <div class="field readonly-field wide">
+            <label for="overallPct">Overall percentage (Matric 25% + FSC 75%)</label>
+            <input type="text" id="overallPct" name="overallPct" readonly placeholder="Auto-calculated">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- STEP 3 -->
+      <fieldset class="form-step" data-step="3">
+        <legend>Language proficiency &amp; entry tests</legend>
+        <p class="step-hint">Leave a field at 0 / None if you haven't attempted it yet — the checker will factor that in.</p>
+        <div class="field-grid">
+          <div class="field">
+            <label for="ielts">IELTS overall band (0–9)</label>
+            <input type="number" id="ielts" name="ielts" min="0" max="9" step="0.5" placeholder="e.g. 6.5" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="toefl">TOEFL iBT score (0–120)</label>
+            <input type="number" id="toefl" name="toefl" min="0" max="120" placeholder="e.g. 90" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="sat">SAT score (0–1600)</label>
+            <input type="number" id="sat" name="sat" min="0" max="1600" placeholder="e.g. 1200" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="testAs">TestAS score (0–130, 0 if not taken)</label>
+            <input type="number" id="testAs" name="testAs" min="0" max="130" placeholder="e.g. 100" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="german">German language level</label>
+            <select id="german" name="german" required>
+              <option value="">Select level</option>
+              <option value="None">None</option>
+              <option value="A1">A1</option>
+              <option value="A2">A2</option>
+              <option value="B1">B1</option>
+              <option value="B2">B2</option>
+              <option value="C1">C1</option>
+              <option value="C2">C2</option>
+            </select>
+            <span class="field-error"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- STEP 4 -->
+      <fieldset class="form-step" data-step="4">
+        <legend>Program preferences</legend>
+        <div class="field-grid">
+          <div class="field">
+            <label for="field">Preferred field of study</label>
+            <select id="field" name="field" required>
+              <option value="">Select a field</option>
+              <option>Computer Science</option>
+              <option>Artificial Intelligence</option>
+              <option>Software Engineering</option>
+              <option>Data Science</option>
+              <option>Mechanical Engineering</option>
+              <option>Electrical Engineering</option>
+              <option>Civil Engineering</option>
+              <option>Business</option>
+              <option>Finance</option>
+            </select>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="city">Preferred city (optional)</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Berlin, Munich, any">
+          </div>
+          <div class="field">
+            <label for="budget">Monthly budget in EUR</label>
+            <input type="number" id="budget" name="budget" min="0" placeholder="e.g. 850" required>
+            <span class="field-error"></span>
+          </div>
+          <div class="field">
+            <label for="semester">Intended semester</label>
+            <select id="semester" name="semester" required>
+              <option value="">Select semester</option>
+              <option value="Winter">Winter (Sept/Oct intake)</option>
+              <option value="Summer">Summer (March/April intake)</option>
+            </select>
+            <span class="field-error"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-nav">
+        <button type="button" class="btn btn-ghost" id="prevStep" disabled>← Back</button>
+        <button type="button" class="btn btn-primary" id="nextStep">Continue →</button>
+        <button type="submit" class="btn btn-primary btn-submit" id="submitForm">Check Eligibility</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="results" id="results">
+  <div class="section-head reveal-up">
+    <p class="eyebrow">Your Results</p>
+    <h2>Matched universities</h2>
+    <p class="section-sub">Ranked by admission chance for your profile. Every card is a real public university — verify final requirements on its official site before applying.</p>
+  </div>
+
+  <div class="data-note reveal-up">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="11"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <p><strong>About this data:</strong> University and city names are real, but every admission threshold (percentage, IELTS/TestAS cut-offs, fees) is a <em>deterministically generated illustrative pattern</em> — not an officially verified figure from any university or uni-assist. Treat scores as a planning estimate, not a real admission decision, and always confirm current requirements on the university's official page.</p>
+  </div>
+
+  <div class="dash-stats reveal-stagger" id="dashStats"></div>
+
+  <div class="results-toolbar glass reveal-up">
+    <input type="search" id="searchInput" placeholder="Search university or city…" aria-label="Search universities">
+    <select id="filterStatus" aria-label="Filter by status">
+      <option value="all">All statuses</option>
+      <option value="eligible">Eligible</option>
+      <option value="conditional">Conditional</option>
+      <option value="not">Not eligible</option>
+    </select>
+    <select id="sortBy" aria-label="Sort results">
+      <option value="chance-desc">Highest chance first</option>
+      <option value="chance-asc">Lowest chance first</option>
+      <option value="name">University name (A–Z)</option>
+      <option value="fee">Semester fee (low–high)</option>
+    </select>
+  </div>
+
+  <div class="recommend-row" id="recommendRow"></div>
+
+  <div class="results-grid" id="resultsGrid">
+    <p class="empty-state">Run the eligibility checker above to see your matched universities here.</p>
+  </div>
+</section>
+
+<!-- ============ SCHOLARSHIPS ============ -->
+<section class="scholarships" id="scholarships">
+  <div class="section-head reveal-up">
+    <p class="eyebrow">Funding</p>
+    <h2>Scholarships &amp; grants worth knowing</h2>
+  </div>
+  <div class="scholarship-grid reveal-stagger" id="scholarshipGrid"></div>
+</section>
+
+<!-- ============ VISA ============ -->
+<section class="visa" id="visa">
+  <div class="section-head reveal-up">
+    <p class="eyebrow">Getting there</p>
+    <h2>Student visa checklist</h2>
+    <p class="section-sub">The German National Visa (Type D) process, broken into what you'll actually be asked for.</p>
+  </div>
+  <div class="visa-grid reveal-stagger" id="visaGrid"></div>
+</section>
+
+<!-- ============ COST CALCULATOR ============ -->
+<section class="costs" id="costs">
+  <div class="section-head reveal-up">
+    <p class="eyebrow">Budgeting</p>
+    <h2>Monthly cost calculator</h2>
+    <p class="section-sub">Public universities charge little to no tuition — your real budget is the cost of living.</p>
+  </div>
+  <div class="cost-shell glass reveal-up">
+    <div class="cost-inputs" id="costInputs"></div>
+    <div class="cost-output">
+      <div class="cost-total">
+        <span>Estimated total / month</span>
+        <strong id="costTotal">€0</strong>
+      </div>
+      <div class="cost-bar" id="costBar"></div>
+      <p class="cost-note">A blocked account for 2026 typically requires roughly €11,904/year (≈€992/month) — verify the current figure before applying, as it's revised periodically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOCUMENTS ============ -->
+<section class="documents" id="documents">
+  <div class="section-head reveal-up">
+    <p class="eyebrow">Paperwork</p>
+    <h2>Document checklist</h2>
+    <p class="section-sub">Tick items off as you gather them. Your progress stays in this tab only.</p>
+  </div>
+  <div class="doc-shell glass reveal-up">
+    <div class="doc-progress">
+      <div class="doc-progress-track"><div class="doc-progress-fill" id="docProgressFill"></div></div>
+      <span id="docProgressLabel">0 of 0 collected</span>
+    </div>
+    <ul class="doc-list" id="docList"></ul>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">Studien<em>kompass</em></span>
+      <p>An independent eligibility-planning tool for Pakistani students. Not affiliated with uni-assist, DAAD, or any German university.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a class="footer-link-btn footer-link-blue" href="#features">Features</a>
+        <a class="footer-link-btn footer-link-blue" href="#checker">Eligibility Checker</a>
+        <a class="footer-link-btn footer-link-blue" href="#costs">Cost Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a class="footer-link-btn footer-link-gold" href="#about" data-modal="about">About</a>
+        <a class="footer-link-btn footer-link-gold" href="#privacy" data-modal="privacy">Privacy</a>
+        <a class="footer-link-btn footer-link-gold" href="#terms" data-modal="terms">Terms</a>
+        <a class="footer-link-btn footer-link-gold" href="#contact" data-modal="contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Elsewhere</h4>
+        <div class="footer-social">
+          <a class="footer-social-btn footer-social-github" href="https://github.com/mabdullahab614-alt" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a class="footer-social-btn footer-social-linkedin" href="https://www.linkedin.com/in/abdullah-javid-b217a2384/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.11 20.45H3.56V9h3.55v11.45Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Studienkompass. Requirements shown are illustrative patterns, not official admission decisions — always confirm with the university or uni-assist.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal glass" id="modalBox" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="Close dialog">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="scoring-engine.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
