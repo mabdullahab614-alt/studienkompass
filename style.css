@@ -178,12 +178,19 @@ section{padding:96px 5vw;max-width:var(--container);margin:0 auto}
 /* ---------- nav ---------- */
 .nav{
   position:fixed;top:0;left:0;right:0;z-index:200;padding:14px 5vw;
-  background:color-mix(in srgb, var(--bg) 68%, transparent);
-  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
-  border-bottom:1px solid var(--card-border);
-  transition:background .3s var(--ease), border-color .3s var(--ease), padding .3s var(--ease), box-shadow .3s var(--ease);
+  background:transparent;
+  backdrop-filter:blur(0px) saturate(100%);-webkit-backdrop-filter:blur(0px) saturate(100%);
+  border-bottom:1px solid transparent;
+  transition:background .4s var(--ease), backdrop-filter .4s var(--ease), -webkit-backdrop-filter .4s var(--ease), border-color .4s var(--ease), padding .3s var(--ease), box-shadow .4s var(--ease);
 }
-.nav.scrolled{background:color-mix(in srgb, var(--bg-elevated) 92%, transparent);box-shadow:var(--shadow);padding:10px 5vw}
+/* glass / frosted effect kicks in only once the page is scrolled */
+.nav.scrolled{
+  background:color-mix(in srgb, var(--bg-elevated) 72%, transparent);
+  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);
+  border-color:var(--card-border);
+  box-shadow:var(--shadow);
+  padding:10px 5vw;
+}
 .nav-inner{max-width:var(--container);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:flex;align-items:center;gap:10px}
 .brand-mark{display:flex;border-radius:6px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.25)}
@@ -621,6 +628,7 @@ html[data-theme="light"] .icon-moon{display:block}
 }
 @media (max-width:860px){
   .nav-links{display:none}
+  .nav-actions .btn{display:none}
   .nav-burger{display:flex}
   .hero{padding-top:120px}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
