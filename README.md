@@ -239,11 +239,11 @@ start index.html         # Windows
 ## ⭐ Show Some Love
 
 <a href="https://github.com/mabdullahab614-alt/studienkompass/stargazers">
-  <img src="https://img.shields.io/github/stars/mabdullahab614-alt/studienkompass?style=for-the-badge&color=e8b923&labelColor=0a0a0c&label=⭐%20Stars" alt="GitHub stars"/>
+  <img src="https://img.shields.io/github/stars/mabdullahab614-alt/studienkompass?style=for-the-badge&color=e8b923&labelColor=0a0a0c&label=Stars" alt="GitHub stars"/>
 </a>
 &nbsp;
 <a href="https://github.com/mabdullahab614-alt/studienkompass/network/members">
-  <img src="https://img.shields.io/github/forks/mabdullahab614-alt/studienkompass?style=for-the-badge&color=3B82F6&labelColor=0a0a0c&label=🍴%20Forks" alt="GitHub forks"/>
+  <img src="https://img.shields.io/github/forks/mabdullahab614-alt/studienkompass?style=for-the-badge&color=3B82F6&labelColor=0a0a0c&label=Forks" alt="GitHub forks"/>
 </a>
 
 - ⭐ Found this useful for your own Germany applications? A star helps other students find it
