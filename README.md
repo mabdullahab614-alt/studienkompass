@@ -236,11 +236,18 @@ start index.html         # Windows
 
 <div align="center">
 
-## ⭐ Star History
+## ⭐ Show Some Love
 
-<a href="https://star-history.com/#mabdullahab614-alt/studienkompass&Date">
-  <img src="https://api.star-history.com/svg?repos=mabdullahab614-alt/studienkompass&type=Date" alt="Star History Chart" width="600"/>
+<a href="https://github.com/mabdullahab614-alt/studienkompass/stargazers">
+  <img src="https://img.shields.io/github/stars/mabdullahab614-alt/studienkompass?style=for-the-badge&color=e8b923&labelColor=0a0a0c&label=⭐%20Stars" alt="GitHub stars"/>
 </a>
+&nbsp;
+<a href="https://github.com/mabdullahab614-alt/studienkompass/network/members">
+  <img src="https://img.shields.io/github/forks/mabdullahab614-alt/studienkompass?style=for-the-badge&color=3B82F6&labelColor=0a0a0c&label=🍴%20Forks" alt="GitHub forks"/>
+</a>
+
+- ⭐ Found this useful for your own Germany applications? A star helps other students find it
+- 🐛 Spotted a bug or wrong-looking threshold? Open an [issue](https://github.com/mabdullahab614-alt/studienkompass/issues)
 
 </div>
 
