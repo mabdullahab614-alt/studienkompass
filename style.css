@@ -528,11 +528,21 @@ html[data-theme="light"] .icon-moon{display:block}
 
 /* ---------- cost calculator ---------- */
 .cost-shell{display:grid;grid-template-columns:1fr 1fr;gap:36px;padding:34px;border-radius:var(--radius-xl)}
-.cost-inputs{display:flex;flex-direction:column;gap:16px}
+/* Grid items get a content-based automatic minimum width by spec, which
+   overrides flex-child min-width:0 one level down — a range input's
+   default intrinsic size was winning that fight and forcing this whole
+   column wider than its 1fr track on narrow phones ("grid blowout").
+   min-width:0 here is what actually lets the column shrink. */
+.cost-inputs{display:flex;flex-direction:column;gap:16px;min-width:0}
 .cost-row{display:flex;justify-content:space-between;align-items:center;gap:14px}
-.cost-row label{font-size:.86rem;color:var(--text-dim);flex:1}
-.cost-row input[type=range]{flex:2;accent-color:var(--red)}
-.cost-row output{font-family:var(--font-mono);width:64px;text-align:right;font-weight:600}
+.cost-row label{font-size:.86rem;color:var(--text-dim);flex:1;min-width:0}
+/* Range inputs carry a browser-default intrinsic min-width (~130px)
+   that flex-shrink can't override on its own — on a 320px-wide phone
+   that alone was wider than the space left after the label and output,
+   pushing the row (and the whole card) past the edge of the screen.
+   min-width:0 lets it actually shrink like every other flex child. */
+.cost-row input[type=range]{flex:2;min-width:0;accent-color:var(--red)}
+.cost-row output{font-family:var(--font-mono);width:64px;flex:none;text-align:right;font-weight:600}
 .cost-output{display:flex;flex-direction:column;justify-content:center;gap:18px}
 .cost-total{display:flex;flex-direction:column;gap:6px}
 .cost-total span{font-size:.8rem;color:var(--text-faint)}
@@ -626,22 +636,43 @@ html[data-theme="light"] .icon-moon{display:block}
   .cost-shell{grid-template-columns:1fr}
   .footer-inner{grid-template-columns:1fr}
 }
-@media (max-width:860px){
+/* Nav gets its own, wider breakpoint: measured in a real headless-browser
+   pass, the full link row + theme toggle + "Check Eligibility" button
+   stop fitting on one line anywhere from ~861px up to ~1000px — the
+   button was getting pushed off the right edge of the viewport and
+   became unreachable, with no burger menu yet to fall back on. 1040px
+   gives enough margin above that measured range. */
+@media (max-width:1040px){
   .nav-links{display:none}
   .nav-actions .btn{display:none}
   .nav-burger{display:flex}
+}
+@media (max-width:860px){
   .hero{padding-top:120px}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
   .field-grid{grid-template-columns:1fr}
   .footer-cols{grid-template-columns:1fr 1fr}
 }
 
-/* ---------- tablet fine-tune (iPad / Android tablet portrait, ~700–860px) ----------
-   Everything above already reflows at 860px, but the multi-step form and the
-   shell paddings were tuned for desktop widths and stay untouched all the way
-   down to 860px, so on real tablets in this band the step labels and
-   card padding feel tight. This pass tightens just those. */
-@media (max-width:860px) and (min-width:701px){
+/* ---------- container safety net ----------
+   Nothing should ever be wider than its parent. This is a defensive
+   backstop for the fixed-width/fixed-position pieces below (hero cards,
+   illustration, absolutely-positioned mini-cards) so a stray px value
+   can never push the page into horizontal scroll / clipped content. */
+.nav-inner,.hero-inner,.hero-visual,.form-shell,.doc-shell,.cost-shell,
+.footer-inner,.modal,section{max-width:100%}
+img,svg{max-width:100%}
+
+/* ---------- tablet + phone fine-tune (≤860px) ----------
+   Everything above already reflows at 860px, but the multi-step form and
+   the shell paddings were tuned for desktop widths and stayed untouched,
+   so on tablets AND phones the step labels ("Language & Tests") and card
+   padding either got cramped or — worse — overflowed their own card
+   (the classic "slipping out of the container" bug). This pass now
+   applies all the way down through phone widths, not just the ~700–860px
+   tablet band, so nothing reverts to the broken nowrap default below
+   701px. */
+@media (max-width:860px){
   .form-shell,.doc-shell{padding:28px 24px}
   .form-progress{margin-bottom:32px}
   .fp-label{font-size:.6rem;white-space:normal;text-align:center;max-width:70px}
@@ -659,4 +690,23 @@ html[data-theme="light"] .icon-moon{display:block}
   .mini-card-2{width:calc(50% - 8px);right:0;left:auto;top:auto;bottom:0}
   .footer-cols{grid-template-columns:1fr}
   .results-toolbar{flex-direction:column}
+  .form-shell,.doc-shell{padding:22px 16px}
+  .cost-shell{padding:20px}
+}
+
+/* ---------- small phones (≤480px) ----------
+   Below this width even a 220–310px grid-item minimum no longer fits
+   inside the viewport once section padding is subtracted, so those
+   auto-fit/auto-fill grids were forcing horizontal overflow ("cards
+   slipping out of their container"). Collapse them to a single column
+   instead of letting the browser fight a minimum that's wider than the
+   screen. */
+@media (max-width:480px){
+  .feature-grid,.scholarship-grid,.visa-grid,.doc-list,
+  .results-grid,.dash-stats{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:20px}
+  .fp-label{max-width:52px;font-size:.56rem}
+  .fp-dot{width:28px;height:28px;font-size:.72rem}
+  .cost-row output{width:52px}
+  .modal{padding:24px}
 }
