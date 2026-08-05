@@ -28,11 +28,6 @@
 
 <br/><br/>
 
-**Enter your academic record once — get scored against 132 German public universities, instantly, in your browser.**
-No sign-up. No data leaves your device. No frameworks under the hood.
-
-<br/>
-
 <a href="https://mabdullahab614-alt.github.io/studienkompass/">
   <img src="https://capsule-render.vercel.app/api?type=rounded&color=0:e8b923,100:c0392b&height=85&section=header&text=TRY%20IT%20LIVE&fontSize=32&fontColor=0a0a0c&animation=twinkling&fontAlignY=62&width=420" alt="Try Studienkompass live"/>
 </a>
@@ -62,8 +57,8 @@ no framework web app, seeded RNG scoring engine.
 <tr>
 <td valign="top">
 
-🎯 [What Is This](#-what-is-this)
-🧮 [How Scoring Works](#-how-scoring-works)
+🎯 [What It Does](#-what-it-does)
+🧮 [Scoring Logic](#-scoring-logic)
 🧩 [Features](#-features)
 
 </td>
@@ -71,13 +66,13 @@ no framework web app, seeded RNG scoring engine.
 
 🛠️ [Tech Stack](#️-tech-stack)
 📂 [Folder Structure](#-folder-structure)
-🚀 [Running It Locally](#-running-it-locally)
+🚀 [Run Locally](#-run-locally)
 
 </td>
 <td valign="top">
 
-🧪 [Running The Tests](#-running-the-tests)
-📊 [Notes On The Data](#-notes-on-the-data)
+🧪 [Run Tests](#-run-tests)
+📊 [Data Notes](#-data-notes)
 📄 [License](#-license)
 
 </td>
@@ -90,20 +85,15 @@ no framework web app, seeded RNG scoring engine.
 
 <br/>
 
-## 🎯 What Is This
+## 🎯 What It Does
 
-Studienkompass is a **client-side eligibility checker** for Pakistani students applying to English-taught Bachelor's programs at German public universities — a process usually scattered across dozens of university pages, uni-assist rules, and APS requirements.
-
-**How it works:**
-
-| Step | Action |
-|:--:|:--|
-| 1️⃣ | Enter your academic record — Matric marks, FSC/Intermediate marks, IELTS / TOEFL / SAT / TestAS, German level, preferred field, city, budget, semester |
-| 2️⃣ | Get scored against **132 public universities** across **9 fields of study** |
-| 3️⃣ | See a ranked, filterable, sortable list tagged 🟢 **Eligible** · 🟡 **Conditional** · 🔴 **Not Eligible** |
-| 4️⃣ | Each result shows *why* — e.g. `FSC 86% ✅` · `IELTS 7.0 ✅` · `TestAS — not taken` |
-
-🔐 **Privacy by design** — 100% HTML, CSS, and vanilla JavaScript. No frameworks, no build step, no Node/npm required to run or test it. Everything runs in your browser; nothing is stored or sent to a server.
+- 🇵🇰 Built for Pakistani students applying to English-taught Bachelor's programs in Germany
+- 📝 Enter academic record once — Matric, FSC, IELTS / TOEFL / SAT / TestAS, German level, field, city, budget, semester
+- 🏛️ Scored against **132 public universities** across **9 fields of study**
+- 🟢🟡🔴 Returns a ranked list — **Eligible** · **Conditional** · **Not Eligible**
+- 💬 Every result shows *why* — e.g. `FSC 86% ✅` · `IELTS 7.0 ✅` · `TestAS — not taken`
+- 🔐 100% client-side — nothing stored, nothing sent to a server
+- 🧱 Zero frameworks, zero build step, zero Node/npm required
 
 <br/>
 
@@ -111,14 +101,16 @@ Studienkompass is a **client-side eligibility checker** for Pakistani students a
 
 <br/>
 
-## 🧮 How Scoring Works
+## 🧮 Scoring Logic
 
-`scoring-engine.js` doesn't hardcode 132 universities by hand — it **seeds a deterministic RNG** to procedurally generate the database once, so the same result comes out identically on every page load.
-
-- `scoreUniversity(student, uni)` → `null` if that university doesn't offer the student's field, otherwise a score + status + up to 4 reasons
-- Score is always **clamped between 2 and 98**
-- **Status thresholds:** `eligible` at 72+, `conditional` at 45+, else `not eligible`
-- `runEligibility(student)` filters to the student's field and sorts by score, descending
+- 🎲 Database of 132 universities is **procedurally generated** from a seeded RNG — identical result on every page load
+- 🚫 `scoreUniversity()` → `null` if the university doesn't offer the student's field
+- 📏 Score always **clamped between 2 and 98**
+- 🟢 `eligible` at **72+**
+- 🟡 `conditional` at **45+**
+- 🔴 otherwise `not eligible`
+- 💡 Up to **4 reasons** returned per result, explaining the score
+- 🔽 `runEligibility()` filters by field, sorts by score descending
 
 <br/>
 
@@ -132,10 +124,10 @@ Studienkompass is a **client-side eligibility checker** for Pakistani students a
 
 | | | |
 |:--:|:--:|:--:|
-| 🏠 **Animated hero stats**<br/>132 universities, 640 programs, count up on scroll | 📝 **4-step checker**<br/>Personal → Academic → Language & Tests → Preferences | 📊 **Ranked results**<br/>Filter by status, sort by chance/name/fee |
-| 🧮 **Live % calculator**<br/>Matric 25% + FSC 75%, auto-computed as you type | 🎓 **Scholarships**<br/>Funding options matched to your profile | 🛂 **Visa checklist**<br/>German National Visa (Type D), step by step |
-| 💶 **Cost calculator**<br/>Live monthly estimate + blocked-account guidance | 📄 **Document checklist**<br/>Tick-off tracker, kept local to your session | 🌗 **Theme toggle**<br/>Dark/light, remembered via `localStorage` |
-| 🧭 **Scrollspy nav**<br/>Highlights the active section as you scroll | 🪟 **Accessible modals**<br/>Focus-trapped About/Privacy/Terms/Contact dialogs | 🔍 **SEO built-in**<br/>OG tags, Twitter Card, canonical URL, `schema.org` JSON-LD |
+| 🏠 **Animated stats**<br/>132 unis · 640 programs · count-up on scroll | 📝 **4-step checker**<br/>Personal → Academic → Language & Tests → Preferences | 📊 **Ranked results**<br/>Filter by status · sort by chance/name/fee |
+| 🧮 **Live % calc**<br/>Matric 25% + FSC 75%, auto-computed | 🎓 **Scholarships**<br/>Funding matched to profile | 🛂 **Visa checklist**<br/>German National Visa (Type D) |
+| 💶 **Cost calculator**<br/>Live monthly estimate + blocked-account guidance | 📄 **Document checklist**<br/>Tick-off tracker, session-local | 🌗 **Theme toggle**<br/>Dark/light via `localStorage` |
+| 🧭 **Scrollspy nav**<br/>Active section auto-highlights | 🪟 **Accessible modals**<br/>Focus-trapped, keyboard-friendly | 🔍 **SEO built-in**<br/>OG · Twitter Card · canonical · JSON-LD |
 
 </div>
 
@@ -151,13 +143,13 @@ Studienkompass is a **client-side eligibility checker** for Pakistani students a
 
 <img src="https://skillicons.dev/icons?i=html,css,js,github" alt="HTML, CSS, JavaScript, GitHub"/>
 
-**100% HTML, CSS, and vanilla JavaScript — no frameworks, no build step, no Node/npm required to run or test it.**
-
 </div>
 
-- 🎨 **CSS** — all styles in `style.css`, using CSS custom properties for theming
-- ⚙️ **JavaScript** — `script.js` handles DOM/UI (rendering, form handling, filters, modals); `scoring-engine.js` holds the eligibility logic (seeded RNG, database generation, scoring algorithm) and loads *before* `script.js`
-- 🧪 **Testing** — a from-scratch ~40-line test runner (`test-framework.js`), no external dependency
+- 🎨 **CSS** → `style.css` — custom properties for theming
+- ⚙️ **JS (UI)** → `script.js` — rendering, forms, filters, modals
+- 🧮 **JS (logic)** → `scoring-engine.js` — RNG, database, scoring — loads *before* `script.js`
+- 🧪 **JS (tests)** → `test-framework.js` — ~40-line runner, zero dependencies
+- 🚫 No React · No Vue · No CSS framework · No build step
 
 <br/>
 
@@ -171,14 +163,13 @@ Studienkompass is a **client-side eligibility checker** for Pakistani students a
 studienkompass/
 │
 ├── 📄 index.html            → markup
-├── 🎨 style.css              → all styles (CSS custom properties for theming)
-├── 🧮 scoring-engine.js        → eligibility logic — seeded RNG, university database
-│                                 generation, scoring algorithm. Loaded before script.js
-├── ⚙️ script.js               → DOM/UI — rendering, form handling, filters, modal, etc.
+├── 🎨 style.css              → styles + theming
+├── 🧮 scoring-engine.js        → RNG · database · scoring algorithm
+├── ⚙️ script.js               → DOM/UI · forms · filters · modals
 │
-├── 🧪 test-framework.js         → a ~40-line vanilla JS test runner (no dependency)
-├── 🧪 scoring_tests.js           → unit tests for the scoring engine
-├── 🧪 test-runner.html           → open this in a browser to run the tests
+├── 🧪 test-framework.js         → hand-built test runner
+├── 🧪 scoring_tests.js           → unit tests
+├── 🧪 test-runner.html           → open in browser to run tests
 │
 └── 📘 README.md
 ```
@@ -189,9 +180,7 @@ studienkompass/
 
 <br/>
 
-## 🚀 Running It Locally
-
-Just open `index.html` in any browser. That's it — no install step.
+## 🚀 Run Locally
 
 ```bash
 git clone https://github.com/mabdullahab614-alt/studienkompass.git
@@ -200,7 +189,8 @@ open index.html          # macOS
 start index.html         # Windows
 ```
 
-> If your browser blocks local `<script src>` loading over `file://`, serve the folder with any static server — e.g. `python3 -m http.server 8000` — this is only a browser security quirk, not a project dependency.
+- ✅ No install step — just open `index.html`
+- ⚠️ `file://` blocking `<script src>`? → `python3 -m http.server 8000` (browser quirk, not a dependency)
 
 <br/>
 
@@ -208,9 +198,11 @@ start index.html         # Windows
 
 <br/>
 
-## 🧪 Running The Tests
+## 🧪 Run Tests
 
-Open [`test-runner.html`](./test-runner.html) in a browser. It loads `scoring-engine.js`, runs **12 unit tests** against it, and renders a pass/fail report on the page — no Node, no npm, no test framework dependency.
+- 🌐 Open [`test-runner.html`](./test-runner.html) in any browser
+- ✅ **12 unit tests** run automatically, pass/fail report renders on the page
+- 🚫 No Node · No npm · No test framework dependency
 
 <div align="center">
 
@@ -228,11 +220,13 @@ Open [`test-runner.html`](./test-runner.html) in a browser. It loads `scoring-en
 
 <br/>
 
-## 📊 Notes On The Data
+## 📊 Data Notes
 
-University and city names are **real**. Every numeric admission threshold (minimum percentage, IELTS/TOEFL cut-offs, TestAS requirement, fees, etc.) is a **deterministically generated illustrative pattern**, not an officially verified figure — see the in-app "About this data" note above the results grid, and the comment header in `scoring-engine.js`.
-
-> ⚠️ A production deployment would need to sync these fields with each university's own admissions office and/or uni-assist. The canonical URL and Open Graph tags in `index.html` already point at the live GitHub Pages domain — update them if you ever move to a custom domain.
+- ✅ University and city names are **real**
+- 🎲 Every threshold (percentage, IELTS/TOEFL, TestAS, fees) is a **deterministically generated illustrative pattern** — not officially verified
+- 📍 See the in-app "About this data" note above the results grid, and the comment header in `scoring-engine.js`
+- 🔗 Canonical URL + Open Graph tags already point at the live GitHub Pages domain
+- 🏢 A production deployment would need to sync these fields with each university's own admissions office and/or uni-assist
 
 <br/>
 
@@ -248,8 +242,6 @@ University and city names are **real**. Every numeric admission threshold (minim
   <img src="https://api.star-history.com/svg?repos=mabdullahab614-alt/studienkompass&type=Date" alt="Star History Chart" width="600"/>
 </a>
 
-*If this project was useful for your own Germany applications, a ⭐ helps other students find it.*
-
 </div>
 
 <br/>
@@ -264,9 +256,9 @@ University and city names are **real**. Every numeric admission threshold (minim
 
 **All Rights Reserved © 2026 Abdullah Javid**
 
-This repository and its contents — including source code and documentation — are made publicly visible **for portfolio and demonstration purposes only**.
-
-No part of this repository may be copied, modified, distributed, sublicensed, or used — in whole or in part, for personal, educational, or commercial purposes — without explicit prior written permission from the author. Forking or cloning this repository does **not** grant any rights to use, reproduce, or redistribute its contents.
+- 👀 Repository is publicly visible for **portfolio and demonstration purposes only**
+- 🚫 No copying, modifying, distributing, sublicensing, or reuse — in whole or in part — without explicit written permission
+- 🚫 Forking or cloning does **not** grant any usage rights
 
 <br/>
 
